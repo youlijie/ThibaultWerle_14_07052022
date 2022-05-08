@@ -22,8 +22,6 @@ function CreateEmployee() {
     const [department, setDepartment] = useState("");
     //Modal
     const [isModalProp, setIsModalProp] = useState("closed");
-    const [content, setContent] = useState("Employee Created!");
-    const [modalStyle, setModalStyle] = useState({backgroundColor: "#708622"});
     //Rest
     const { saveEmployees } = useContext(EmployeeContext);
     const formRef = useRef();
@@ -48,14 +46,12 @@ function CreateEmployee() {
             department: department,
         }
         saveEmployees(employee);
-        setIsModalProp("closed");
-        reset();
+        setIsModalProp("open");
     }
 
 
     return (
         <main>
-            <Modal isModalProp={isModalProp} content={content} modalStyle={modalStyle}/>
             <div className="split left">
         <div className="main-select">
           <h1>HRnet</h1>
@@ -74,10 +70,8 @@ function CreateEmployee() {
           <input type="text" onChange={(e) => setLastname(e.target.value)} required />
 
           <span>Date of birth</span>
-          <DayPicker
-            dayPickerProps={{
-              todayButton: "Today",
-            }}
+          <DayPicker fromYear={1940} toYear={2022} captionLayout="dropdown"
+            mode="single" required
             onDayChange={(day) => {
               setBirthdate(day.toLocaleDateString());
             }}
@@ -86,9 +80,7 @@ function CreateEmployee() {
 
           <span>Start date</span>
           <DayPicker
-            dayPickerProps={{
-              todayButton: "Today",
-            }}
+            mode="single" required
             onDayChange={(day) => {
               setStartDate(day.toLocaleDateString());
             }}
@@ -132,6 +124,7 @@ function CreateEmployee() {
             Save
           </button>
         </form>
+        <Modal isModalProp={"closed"} content={"Employee Created!"} modalStyle={{backgroundColor: "#708622"}}/>
       </div>
         </main>
     )
