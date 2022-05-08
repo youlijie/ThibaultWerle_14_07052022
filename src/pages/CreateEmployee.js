@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
-import DayPickerInput from "react-day-picker/DayPickerInput";
-import "react-day-picker/lib/style.css";
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 import { departments } from "../data/departments";
 import { statesUSA } from "../data/states";
 import Modal from "modal-module-thiw";
@@ -74,7 +74,7 @@ function CreateEmployee() {
           <input type="text" onChange={(e) => setLastname(e.target.value)} required />
 
           <span>Date of birth</span>
-          <DayPickerInput
+          <DayPicker
             dayPickerProps={{
               todayButton: "Today",
             }}
@@ -85,7 +85,7 @@ function CreateEmployee() {
           />
 
           <span>Start date</span>
-          <DayPickerInput
+          <DayPicker
             dayPickerProps={{
               todayButton: "Today",
             }}
