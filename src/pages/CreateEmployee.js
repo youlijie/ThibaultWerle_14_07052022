@@ -6,6 +6,7 @@ import 'react-day-picker/dist/style.css';
 import { departments } from "../data/departments";
 import { statesUSA } from "../data/states";
 import Modal from "modal-module-thiw";
+import "modal-module-thiw/dist-unminified/index.css";
 import { EmployeeContext } from "../data/context";
 
 
@@ -37,8 +38,8 @@ function CreateEmployee() {
         const employee = {
             firstname: firstname,
             lastname: lastname,
-            birthdate: birthdate,
-            startDate: startDate,
+            birthdate: withoutTime(birthdate),
+            startDate: withoutTime(startDate),
             street: street,
             city: city,
             state: state,
@@ -47,6 +48,13 @@ function CreateEmployee() {
         }
         saveEmployees(employee);
         setIsModalProp("open");
+        reset();
+    }
+
+    const withoutTime = (dateTime) => { //clean date 
+      var d = new Date(dateTime);
+      var date = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+      return date;
     }
 
 
@@ -62,7 +70,7 @@ function CreateEmployee() {
         </div>
       </div>
       <div className="split right">
-        <form className="create-employee-form" onSubmit={(e) => handleSubmit(e)} ref={formRef}>
+        <form className="create-employee-form" ref={formRef}>
           <span>First name</span>
           <input type="text" onChange={(e) => setFirstname(e.target.value)} required />
 
@@ -70,21 +78,16 @@ function CreateEmployee() {
           <input type="text" onChange={(e) => setLastname(e.target.value)} required />
 
           <span>Date of birth</span>
-          <DayPicker fromYear={1940} toYear={2022} captionLayout="dropdown"
-            mode="single" required
-            onDayChange={(day) => {
-              setBirthdate(day.toLocaleDateString());
-            }}
-            key={`daypicker1 ${resetKey}`}
+          <DayPicker fromYear={1940} toYear={2022} captionLayout="dropdown" mode="single"
+            selected={birthdate}
+            onSelect={setBirthdate}
           />
 
           <span>Start date</span>
           <DayPicker
-            mode="single" required
-            onDayChange={(day) => {
-              setStartDate(day.toLocaleDateString());
-            }}
-            key={`daypicker2 ${resetKey}`}
+            mode="single"
+            selected={startDate}
+            onSelect={setStartDate}
           />
 
           <div className="adresse">
@@ -120,11 +123,12 @@ function CreateEmployee() {
             key={`react-select2 ${resetKey}`}
           />
 
-          <button className="btn" type="submit">
+        <button className="btn" onClick={handleSubmit} type="submit">
             Save
-          </button>
+        </button>
         </form>
-        <Modal isModalProp={"closed"} content={"Employee Created!"} modalStyle={{backgroundColor: "#708622"}}/>
+        
+        <Modal setIsModalProp={setIsModalProp} isModalProp={isModalProp} content={"Employee Created!"} modalStyle={{backgroundColor: "#708622"}}/>
       </div>
         </main>
     )
