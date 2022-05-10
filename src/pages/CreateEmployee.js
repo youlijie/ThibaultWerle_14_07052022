@@ -28,11 +28,25 @@ function CreateEmployee() {
     const formRef = useRef();
     const [resetKey, setResetKey] = useState(new Date().getTime());
 
+    // Reset form
     const reset = () => {
         formRef.current.reset();
         setResetKey(new Date().getTime());
     }
 
+    //regex
+    const regex = /^[a-zA-Z]{2,}$/;
+
+    //validation
+    const validate = () => {
+        if (firstname.match(regex) && lastname.match(regex) && birthdate && startDate && street && city && state && zipCode && department) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Submit form
     const handleSubmit = (e) => {
         e.preventDefault();
         const employee = {
@@ -46,9 +60,13 @@ function CreateEmployee() {
             zipCode: zipCode,
             department: department,
         }
+        if (validate()) {
         saveEmployees(employee);
         setIsModalProp("open");
         reset();
+        } else {
+            return (alert("Please fill in all the fields correctly"));
+        }
     }
 
     const withoutTime = (dateTime) => { //clean date 

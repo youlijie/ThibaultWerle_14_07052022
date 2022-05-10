@@ -8,10 +8,6 @@ const EmployeesList = () => {
 
     const { employees } = useContext(EmployeeContext)
 
-
-
-        
-
     return (
         <div className='Employees-List-Page'>
             <Link to='/' className='btn-link top-btn'> Create a new employee </Link>
