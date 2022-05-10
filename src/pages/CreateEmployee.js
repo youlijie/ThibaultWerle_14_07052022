@@ -60,7 +60,7 @@ function CreateEmployee() {
 
     return (
         <main>
-            <div className="split left">
+      <div className="split top">
         <div className="main-select">
           <h1>HRnet</h1>
           <h2>Create Employee</h2>
@@ -69,7 +69,7 @@ function CreateEmployee() {
           </Link>
         </div>
       </div>
-      <div className="split right">
+      <div className="split bottom">
         <form className="create-employee-form" ref={formRef}>
           <span>First name</span>
           <input type="text" onChange={(e) => setFirstname(e.target.value)} required />
@@ -78,16 +78,18 @@ function CreateEmployee() {
           <input type="text" onChange={(e) => setLastname(e.target.value)} required />
 
           <span>Date of birth</span>
-          <DayPicker fromYear={1940} toYear={2022} captionLayout="dropdown" mode="single"
+          <DayPicker fromYear={1940} toYear={2022} captionLayout="dropdown" mode="single" required
             selected={birthdate}
             onSelect={setBirthdate}
+            styles={{ caption : { color: '#fca311' }, day_selected: { backgroundColor: '#fca311' } }}
           />
 
           <span>Start date</span>
           <DayPicker
-            mode="single"
+            mode="single" required
             selected={startDate}
             onSelect={setStartDate}
+            styles={{ caption : { color: '#fca311' }, day_selected: { backgroundColor: '#fca311' } }}
           />
 
           <div className="adresse">
@@ -101,7 +103,7 @@ function CreateEmployee() {
 
             <span>State</span>
             <Select
-              className="whiteblank"
+              className="whiteblank2"
               isSearchable="true"
               name="statesUSA"
               options={statesUSA}
@@ -127,9 +129,8 @@ function CreateEmployee() {
             Save
         </button>
         </form>
-        
-        <Modal setIsModalProp={setIsModalProp} isModalProp={isModalProp} content={"Employee Created!"} modalStyle={{backgroundColor: "#708622"}}/>
       </div>
+      <Modal setIsModalProp={setIsModalProp} isModalProp={isModalProp} content={"Employee Created!"} modalStyle={{backgroundColor: "#e5e5e5", color: "#14213d"}}/>
         </main>
     )
 }

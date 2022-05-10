@@ -11,27 +11,15 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1c93ff;
+  background-color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-/* Split the screen in half */
-.split {
-  height: 100%;
-  width: 100%;
-}
 
-/* Control the left side */
-.left {
-  left: 0;
-}
-
-/* Control the right side */
-.right {
-  right: 0;
-  background-color: white;
+.bottom {
+  background-color: #14213d;
 }
 
 .margin-top-10 {
@@ -44,7 +32,7 @@ code {
 
 h1,
 h2 {
-  color: white;
+  color: #fca311;
 }
 
 h1 {
@@ -65,8 +53,11 @@ h1 {
 }
 
 .create-employee-form input {
-  display: block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
   border: 1px solid #cccccc;
   height: 39px;
   font-size: 17px;
@@ -74,6 +65,13 @@ h1 {
   padding-left: 10px;
   color: black;
   margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .create-employee-form input:focus {
@@ -87,15 +85,24 @@ h1 {
   padding-bottom: 20px;
 }
 .adresse {
-  background-color: #2c5fd8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e5e5;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   padding: 5px 15px;
+  width: 600px;
+}
+
+.adresse input { 
+  width: 70%;
 }
 
 .adresse span {
-  color: white;
+  color: #fca311;
 }
 
 .top-btn {
@@ -107,12 +114,12 @@ h1 {
 .btn {
   font-size: 17px;
   height: 39px;
-  color: whitesmoke;
+  color: #fca311;
   font-weight: 500;
-  border: 2px solid #2684ff;
-  background-color: #2684ff;
-  min-width: 100%;
+  border: 2px solid #e5e5e5;
+  background-color: #e5e5e5;
   border-radius: 5px;
+  width: 40%;
   margin-bottom: 20px;
 }
 
@@ -132,10 +139,14 @@ h1 {
   padding: 5px 20px;
   text-decoration: none;
   text-align: center;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .margin-btn {
-  margin: 0 10%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn-link:hover {
@@ -146,58 +157,23 @@ h1 {
 
 .whiteblank {
   margin: 10px 0 20px 0;
+  width: 40%;
 }
+
+.whiteblank2 {
+  margin: 10px 0 20px 0;
+  width: 70%;
+}
+
+
+
 span {
   display: block;
-}
-@media screen and (min-width: 540px) {
-  .split {
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-  }
-  .main-select {
-    position: absolute;
-    top: 35%;
-    left: 5%;
-    height: 28vh;
-  }
-  .btn-link {
-    margin: 0;
-    padding: 10px 20px;
-  }
-  .btn {
-    border-radius: 5px;
-  }
-  .create-employee-form {
-    width: 45vw;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    margin: 0;
-  }
+  color: #fca311;
 }
 
-@media screen and (min-width: 600px) {
-  .main-select {
-    left: 18%;
-  }
-  h1 {
-    font-size: 78px;
-  }
-}
-
-@media screen and (min-width: 880px) {
-  .main-select {
-    left: 25%;
-  }
-  h1 {
-    font-size: 90px;
+@media screen and (max-width: 700px) {
+  .adresse {
+    width: 80%;
   }
 }
